@@ -1,14 +1,17 @@
 import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
-import Login from './components/login/Login';
+import AppRouter from './components/AppRouter';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <Login />
+        <AppRouter />
       </header>
     </div>
+    </BrowserRouter>
   );
 }
 
