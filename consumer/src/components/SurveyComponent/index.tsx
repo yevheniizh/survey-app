@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import styles from './styles.module.scss';
 import ScaleCard from '../ScaleCard';
@@ -6,6 +6,7 @@ import RangeComponent from '../RangeComponent';
 import Button from '../Button';
 import ShareFiles from '../ShareFiles';
 import ContactsInfo from '../ContactsInfo';
+import ShareWithFriends from '../SahreWithFriends';
 
 const scaleCardTitles = [
   'Atmosphere',

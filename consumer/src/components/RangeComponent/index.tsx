@@ -6,8 +6,6 @@ const RangeComponent = () => {
   const [currentRate, setCurrentRate] = useState('6');
 
   const onInputHandler = (e: any) => {
-    console.log('Value:', e.target.value);
-    console.log(e.target.style);
     e.target.style.background =
       'linear-gradient(to right, #ffa188 0%, #ffa188 ' +
       e.target.value * 10 +
