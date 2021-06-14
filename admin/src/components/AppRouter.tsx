@@ -8,8 +8,6 @@ import { MyContext } from '..';
 const AppRouter = () => {
     const {auth} = useContext(MyContext);
     const [user] = useAuthState(auth);
-//   const [user] = useAuthState(auth);
-//   const isUserLogged = false;
 console.log(user);
   return user ? (
     <Switch>
