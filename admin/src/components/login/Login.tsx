@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {MyContext} from '../../index';
+import firebase from 'firebase';
 
 const Login = () => {
+    const {auth} = useContext(MyContext);
+
+    const login = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const {user} = await auth.signInWithPopup(provider);
+        console.log(user);
+    }
     return (
         <div>
-            <h2>Log in</h2>
+            <h2>Log in!</h2>
+            <button onClick={login} type='button'>Log in.</button>
         </div>
     )
 }
 
 export default Login;
 
+
+function Context(Context: any): { auth: any; } {
+    throw new Error('Function not implemented.');
+}
 // <!-- The core Firebase JS SDK is always required and must be listed first -->
 // <script src="/__/firebase/8.6.5/firebase-app.js"></script>
 
