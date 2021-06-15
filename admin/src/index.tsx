@@ -7,13 +7,13 @@ import 'firebase/auth';
 import reportWebVitals from './reportWebVitals';
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyCyOmMmGAUnFhWdnIBLPPPrKR8Vq0_VjRI',
-  authDomain: 'test-auth-140e7.firebaseapp.com',
-  projectId: 'test-auth-140e7',
-  storageBucket: 'test-auth-140e7.appspot.com',
-  messagingSenderId: '706853856585',
-  appId: '1:706853856585:web:383a516d62efbe56d12698',
-  measurementId: 'G-M5H68X08ZR',
+  apiKey: "AIzaSyCQ5D2Djy95Gie0bl11uGRLykARDWT8k_4",
+  authDomain: "survey-i.firebaseapp.com",
+  projectId: "survey-i",
+  storageBucket: "survey-i.appspot.com",
+  messagingSenderId: "445296628160",
+  appId: "1:445296628160:web:0e0d416c2e4293d0a53825",
+  measurementId: "G-LLBYXC6D6K"
 });
 
 export const MyContext = createContext({} as any);
