@@ -1,6 +1,6 @@
 {
   "name": "@alega-lab/my-perfect-package",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "files": [
@@ -9,13 +9,12 @@
   "types": "build/index.d.ts",
   "description": "A skeleton to create your own React component library using Rollup, TypeScript, Sass and Storybook",
   "scripts": {
-    "build": "rollup -c -w",
+    "build": "rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
-    "storybook": "start-storybook -p 6006",
-    "storybook:export": "build-storybook",
     "generate": "node ./util/create-component",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "registry": "NPM_TOKEN=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 yarn publish"
   },
   "keywords": [
     "React",
