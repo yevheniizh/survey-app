@@ -1,6 +1,6 @@
 {
   "name": "@alega-lab/my-perfect-package",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "files": [
@@ -13,7 +13,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "generate": "node ./util/create-component",
-    "registry": "NPM_TOKEN=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 yarn publish",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
