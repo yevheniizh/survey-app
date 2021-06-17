@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "admin--survey"
+  },
+  "targets": {
+    "admin--survey": {
+      "hosting": {
+        "admin": [
+          "admin--survey"
+        ],
+        "consumer": [
+          "consumer--survey"
+        ]
+      }
+    }
+  }
+}
