@@ -6,7 +6,6 @@ import RangeComponent from '../RangeComponent';
 import Button from '../Button';
 import ShareFiles from '../ShareFiles';
 import ContactsInfo from '../ContactsInfo';
-import ShareWithFriends from '../SahreWithFriends';
 
 const scaleCardTitles = [
   'Atmosphere',
@@ -33,7 +32,7 @@ const SurveyComponent: React.FC<SurveyComponentProps> = ({
       </h2>
       <input
         className={(styles.shareInput, styles.input)}
-        placeholder='Please share'
+        placeholder="Please share"
       />
       <ShareFiles />
       <ContactsInfo />
