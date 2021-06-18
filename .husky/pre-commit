@@ -3,3 +3,5 @@
 
 cd admin
 npx lint-staged
+cd ../consumer
+npx lint-staged
