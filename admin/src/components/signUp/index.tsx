@@ -2,44 +2,38 @@ import * as React from 'react';
 import { useCallback, useContext } from 'react';
 import { MyContext } from '../..';
 import { NavLink } from 'react-router-dom';
-import { SIGN_UP_ROUTE } from '../../utils/consts';
+import { LOGIN_ROUTE } from '../../utils/consts';
 import styles from './styles.module.css';
-import firebase from 'firebase/app';
 
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
 
-const Login = ({ history }: { history: any }) => {
+const SignUp = ({ history }: { history: any }) => {
   const { auth } = useContext(MyContext);
 
-  const loginWithGoogle = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const { user } = await auth.signInWithPopup(provider);
-    console.log(user);
-  };
-
-  const handleLogin = useCallback(
+  const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await auth.signInWithEmailAndPassword(email.value, password.value);
+        await auth.createUserWithEmailAndPassword(email.value, password.value);
         history.push('/');
       } catch (error) {
-        console.log(error);
+        alert(error);
       }
     },
     [auth, history]
   );
 
   return (
-    <Box className={styles.login__root} pt={8}>
+    <Box className={styles.signup__root} pt={8}>
       <Grid container component="main" justify="center">
         <Grid item xs={12} sm={8} md={5}>
           <Typography component="h1" variant="h4">
-            Log In
+            Create an account
           </Typography>
-          <form className={styles.login__form} onSubmit={handleLogin}>
+
+          <form className={styles.signup__form} onSubmit={handleSignUp}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -69,26 +63,14 @@ const Login = ({ history }: { history: any }) => {
                 type="submit"
                 fullWidth
               >
-                Log In
+                Sign Up
               </Button>
             </Box>
           </form>
 
           <Box mt={1}>
-            <Button
-              color="primary"
-              variant="outlined"
-              onClick={loginWithGoogle}
-              type="submit"
-              fullWidth
-            >
-              Log In with Google
-            </Button>
-          </Box>
-
-          <Box mt={1}>
-            <NavLink to={SIGN_UP_ROUTE} style={{ color: blue[700] }}>
-              Don't have an account? Sign Up
+            <NavLink to={LOGIN_ROUTE} style={{ color: blue[700] }}>
+              Have an account? Log In
             </NavLink>
           </Box>
         </Grid>
@@ -97,4 +79,4 @@ const Login = ({ history }: { history: any }) => {
   );
 };
 
-export default Login;
+export default SignUp;
