@@ -1,8 +1,9 @@
-import React, { createContext } from 'react';
+import * as React from 'react';
+import { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import reportWebVitals from './reportWebVitals';
 
