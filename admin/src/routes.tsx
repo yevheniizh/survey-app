@@ -1,6 +1,6 @@
-import Home from './components/home/Home';
-import Login from './components/login/Login';
-import SignUp from './components/signUp/SignUp';
+import Home from './components/Home';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import { HOME_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from './utils/consts';
 
 export const publicRoutes = [
