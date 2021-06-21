@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useCallback, useContext } from 'react';
-import { MyContext } from '../..';
 import { NavLink } from 'react-router-dom';
 import { SIGN_UP_ROUTE } from '../../utils/consts';
 import styles from './styles.module.css';
@@ -8,29 +6,25 @@ import firebase from 'firebase/app';
 
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
+import auth from '../../services/firebase.service';
 
 const Login = ({ history }: { history: any }) => {
-  const { auth } = useContext(MyContext);
-
   const loginWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
     console.log(user);
   };
 
-  const handleLogin = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await auth.signInWithEmailAndPassword(email.value, password.value);
-        history.push('/');
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [auth, history]
-  );
+  const handleLogin = async (event: any) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    try {
+      await auth.signInWithEmailAndPassword(email.value, password.value);
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Box className={styles.login__root} pt={8}>

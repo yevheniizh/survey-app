@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import auth from '../../services/firebase.service';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,11 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header({
-  auth,
-  user,
+  currentUser,
 }: {
-  auth: any;
-  user: any;
+  currentUser: any;
 }): JSX.Element {
   const classes = useStyles();
 
@@ -53,7 +52,7 @@ export default function Header({
             <SearchIcon />
           </IconButton>
           <Box className={classes.auth}>
-            {user?.displayName || 'User'}
+            {currentUser?.displayName || 'User'}
             <Button
               color="inherit"
               size="small"

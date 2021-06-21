@@ -1,29 +1,23 @@
 import * as React from 'react';
-import { useCallback, useContext } from 'react';
-import { MyContext } from '../..';
 import { NavLink } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../utils/consts';
 import styles from './styles.module.css';
 
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
+import auth from '../../services/firebase.service';
 
-const SignUp = ({ history }: { history: any }) => {
-  const { auth } = useContext(MyContext);
-
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await auth.createUserWithEmailAndPassword(email.value, password.value);
-        history.push('/');
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [auth, history]
-  );
+const SignUp = () => {
+  const handleSignUp = async (event: any) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    try {
+      await auth.createUserWithEmailAndPassword(email.value, password.value);
+      // history.push('/');
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <Box className={styles.signup__root} pt={8}>

@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { MyContext } from '../..';
 import Header from '../Header';
 
 import { Grid, Typography } from '@material-ui/core';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Home = (): JSX.Element => {
-  const { auth } = useContext(MyContext);
-  const [user] = useAuthState(auth);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>
-      <Header auth={auth} user={user} />
+      <Header currentUser={currentUser} />
       <Grid container component="main" justify="center">
         <Grid item xs={12} sm={10} md={10} xl={10}>
           <Typography
