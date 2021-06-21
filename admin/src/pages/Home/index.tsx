@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import Header from '../Header';
+import Header from '../../components/Header';
 
 import { Grid, Typography } from '@material-ui/core';
 import { AuthContext } from '../../contexts/AuthContext';
