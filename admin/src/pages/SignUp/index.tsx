@@ -1,21 +1,39 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LOGIN_ROUTE } from '../../utils/consts';
 import styles from './styles.module.css';
 
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
 import auth from '../../services/firebase.service';
+import { useFormErrorHandler } from '../../hooks/useFormErrorHandler';
+import {
+  ERROR_IS_TRUE,
+  ERROR_IS_FALSE,
+  NO_MESSAGE,
+  ERROR_INITIAL_VALUES,
+  LOGIN_ROUTE,
+} from '../../utils/consts';
 
 const SignUp = () => {
+  const { state, setErrorEmail, setErrorPassword } = useFormErrorHandler({
+    errorEmail: ERROR_INITIAL_VALUES,
+    errorPassword: ERROR_INITIAL_VALUES,
+  });
+
   const handleSignUp = async (event: any) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     try {
       await auth.createUserWithEmailAndPassword(email.value, password.value);
-      // history.push('/');
     } catch (error) {
-      alert(error);
+      console.log(error);
+      if (error.code === 'auth/wrong-password') {
+        setErrorEmail(ERROR_IS_FALSE, NO_MESSAGE);
+        setErrorPassword(ERROR_IS_TRUE, error.message);
+      } else {
+        setErrorEmail(ERROR_IS_TRUE, error.message);
+        setErrorPassword(ERROR_IS_FALSE, NO_MESSAGE);
+      }
     }
   };
 
@@ -32,6 +50,8 @@ const SignUp = () => {
               variant="outlined"
               margin="normal"
               required
+              error={state.errorEmail.isError}
+              helperText={state.errorEmail.message}
               fullWidth
               id="email"
               label="Email Address"
@@ -43,6 +63,8 @@ const SignUp = () => {
               variant="outlined"
               margin="normal"
               required
+              error={state.errorPassword.isError}
+              helperText={state.errorPassword.message}
               fullWidth
               name="password"
               label="Password"
