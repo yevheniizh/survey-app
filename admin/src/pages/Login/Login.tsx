@@ -1,48 +1,15 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-  ERROR_IS_TRUE,
-  ERROR_IS_FALSE,
-  NO_MESSAGE,
-  ERROR_INITIAL_VALUES,
-  SIGN_UP_ROUTE,
-} from '../../utils/consts';
 import styles from './Login.module.css';
-import firebase from 'firebase/app';
+import authService from '../../services/auth.service';
+import { SIGN_UP_ROUTE } from '../../utils/consts';
 
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
-import auth from '../../services/firebase.service';
-import { useFormErrorHandler } from '../../hooks/useFormErrorHandler';
 
 const Login = () => {
-  const { state, setErrorEmail, setErrorPassword } = useFormErrorHandler({
-    errorEmail: ERROR_INITIAL_VALUES,
-    errorPassword: ERROR_INITIAL_VALUES,
-  });
-
-  const loginWithGoogle = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const { user } = await auth.signInWithPopup(provider);
-    console.log(user);
-  };
-
-  const handleLogin = async (event: any) => {
-    event.preventDefault();
-    const { email, password } = event.target.elements;
-    try {
-      await auth.signInWithEmailAndPassword(email.value, password.value);
-    } catch (error) {
-      console.log(error);
-      if (error.code === 'auth/wrong-password') {
-        setErrorEmail(ERROR_IS_FALSE, NO_MESSAGE);
-        setErrorPassword(ERROR_IS_TRUE, error.message);
-      } else {
-        setErrorEmail(ERROR_IS_TRUE, error.message);
-        setErrorPassword(ERROR_IS_FALSE, NO_MESSAGE);
-      }
-    }
-  };
+  const { errorState, classicLogin, googleLogin } = authService();
+  const { emailErrorState, passwordErrorState } = errorState;
 
   return (
     <Box className={styles.login__root} pt={8}>
@@ -51,13 +18,13 @@ const Login = () => {
           <Typography component="h1" variant="h4">
             Log In
           </Typography>
-          <form className={styles.login__form} onSubmit={handleLogin}>
+          <form className={styles.login__form} onSubmit={classicLogin}>
             <TextField
               variant="outlined"
               margin="normal"
               required
-              error={state.errorEmail.isError}
-              helperText={state.errorEmail.message}
+              error={emailErrorState.isError}
+              helperText={emailErrorState.message}
               fullWidth
               id="email"
               label="Email Address"
@@ -69,8 +36,8 @@ const Login = () => {
               variant="outlined"
               margin="normal"
               required
-              error={state.errorPassword.isError}
-              helperText={state.errorPassword.message}
+              error={passwordErrorState.isError}
+              helperText={passwordErrorState.message}
               fullWidth
               name="password"
               label="Password"
@@ -94,7 +61,7 @@ const Login = () => {
             <Button
               color="primary"
               variant="outlined"
-              onClick={loginWithGoogle}
+              onClick={googleLogin}
               type="submit"
               fullWidth
             >

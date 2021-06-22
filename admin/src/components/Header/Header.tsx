@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import auth from '../../services/firebase.service';
+import app from '../../services/firebase.service';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,7 +57,7 @@ export default function Header({
               color="inherit"
               size="small"
               variant="outlined"
-              onClick={() => auth.signOut()}
+              onClick={() => app.auth().signOut()}
               className={classes.menuButton}
             >
               Sign out
