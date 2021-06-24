@@ -13,8 +13,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "generate": "node ./util/create-component",
-    "prepublishOnly": "npm run build",
-    "registry": "NPM_TOKEN=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 yarn publish"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "React",
