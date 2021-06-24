@@ -1,6 +1,5 @@
 import Home from './pages/Home';
 import Login from './pages/Login';
-import SignUp from './pages/SignUp';
 import { HOME_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from './utils/consts';
 
 export const publicRoutes = [
@@ -10,7 +9,7 @@ export const publicRoutes = [
   },
   {
     path: SIGN_UP_ROUTE,
-    Component: SignUp,
+    Component: Login,
   },
 ];
 

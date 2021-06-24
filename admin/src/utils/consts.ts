@@ -1,6 +1,6 @@
 export const HOME_ROUTE = '/';
 export const LOGIN_ROUTE = '/login';
-export const SIGN_UP_ROUTE = '/signUp';
+export const SIGN_UP_ROUTE = '/signup';
 
 // form error handling
 export const ERROR_IS_TRUE = true;
