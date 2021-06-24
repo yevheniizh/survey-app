@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import app from '../services/firebase.service';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { fireAuth } from '@alega-lab/my-perfect-package';
 import Loader from '../components/Loader';
 
 export const AuthContext = React.createContext({} as any);
@@ -9,9 +10,10 @@ export const AuthProvider = ({ children }: any) => {
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((user: any) => {
+    fireAuth.onAuthStateChanged((user: any) => {
       setCurrentUser(user);
 
+      // delay page rendering until Loader finish spinning min for 1 sec
       setTimeout(() => {
         setPending(false);
       }, 1000);

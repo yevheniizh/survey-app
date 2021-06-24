@@ -24,7 +24,7 @@ const reducer = (state: any, action: any) => {
   }
 };
 
-export const useFormErrorHandler = (initialState = {}) => {
+export const useLoginErrorHandler = (initialState = {}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const setEmailErrorState = (isError: boolean, message: string) =>

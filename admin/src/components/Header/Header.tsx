@@ -1,5 +1,5 @@
 import * as React from 'react';
-import app from '../../services/firebase.service';
+import { fireAuth } from '@alega-lab/my-perfect-package';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header = () => {
   const classes = useStyles();
-  const { currentUser } = useContext(AuthContext); // current user data
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className={classes.root}>
@@ -56,7 +56,7 @@ const Header = () => {
               color="inherit"
               size="small"
               variant="outlined"
-              onClick={() => app.auth().signOut()}
+              onClick={() => fireAuth.signOut()}
               className={classes.menuButton}
             >
               Sign out

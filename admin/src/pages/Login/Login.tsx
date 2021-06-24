@@ -1,26 +1,37 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Login.module.css';
-import authService from '../../services/auth.service';
 import { LOGIN_ROUTE, SIGN_UP_ROUTE } from '../../utils/consts';
+import styles from './Login.module.css';
 
+/** Auth */
+import {
+  googleLogin,
+  formLogin,
+  formSignUp,
+} from '@alega-lab/my-perfect-package';
+import loginErrorHandler from '../../services/loginErrorHandler.service';
+
+/** Material UI */
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
 
 const Login = ({ match }: { match: any }) => {
-  const isSignup = match.path === '/signup'; // what route is rendering now
-  const { errorState, classicLogin, googleLogin, classicSignUp } =
-    authService();
+  /** define what route is rendering now */
+  const isSignupPage = match.path === '/signup';
+  /** form error handler */
+  const { errorState, errorActions } = loginErrorHandler();
   const { emailErrorState, passwordErrorState } = errorState;
 
-  const onSubmit = isSignup ? classicSignUp : classicLogin;
+  const onSubmit = isSignupPage
+    ? (event: any) => formSignUp(event, errorActions)
+    : (event: any) => formLogin(event, errorActions);
 
   return (
     <Box className={styles.login__root} pt={8}>
       <Grid container component="main" justify="center">
         <Grid item xs={12} sm={8} md={5}>
           <Typography component="h1" variant="h4">
-            {isSignup ? 'Create an account' : 'Log In'}
+            {isSignupPage ? 'Create an account' : 'Log In'}
           </Typography>
           <form className={styles.login__form} onSubmit={onSubmit}>
             <TextField
@@ -56,12 +67,12 @@ const Login = ({ match }: { match: any }) => {
                 type="submit"
                 fullWidth
               >
-                {isSignup ? 'Sign Up' : 'Log In'}
+                {isSignupPage ? 'Sign Up' : 'Log In'}
               </Button>
             </Box>
           </form>
 
-          {isSignup ? (
+          {isSignupPage ? (
             <Box mt={1}>
               <NavLink to={LOGIN_ROUTE} style={{ color: blue[700] }}>
                 Have an account? Log In
