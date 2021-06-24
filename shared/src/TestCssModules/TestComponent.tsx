@@ -1,6 +1,6 @@
-import React from "react";
-import styles from './styles.css'
-import { TestComponentProps } from "./TestComponent.types";
+import React from 'react';
+import styles from './styles.css';
+import { TestComponentProps } from './TestComponent.types';
 
 //import "./TestComponent.scss";
 const TestComponent: React.FC<TestComponentProps> = ({ theme }) => (
