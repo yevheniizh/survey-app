@@ -1,20 +1,24 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "rollup-plugin-typescript2";
-import postcss from "rollup-plugin-postcss";
-import copy from "rollup-plugin-copy";
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import url from '@rollup/plugin-url';
+import image from '@rollup/plugin-image';
+import typescript from 'rollup-plugin-typescript2';
+import postcss from 'rollup-plugin-postcss';
+import svg from 'rollup-plugin-svg';
+import copy from 'rollup-plugin-copy';
+import url2 from 'postcss-url';
 
-const packageJson = require("./package.json");
+const packageJson = require('./package.json');
 
 export default {
-  input: "src/index.ts",
+  input: 'src/index.ts',
   output: [
     {
       file: packageJson.module,
-      format: "esm",
-      sourcemap: true
-    }
+      format: 'esm',
+      sourcemap: true,
+    },
   ],
   plugins: [
     peerDepsExternal(),
@@ -24,21 +28,34 @@ export default {
     postcss({
       modules: true,
       autoModules: true,
-      plugins: []
+      plugins: [
+        url2({
+          url: 'inline', // enable inline assets using base64 encoding
+          maxSize: 10, // maximum file size to inline (in kilobytes)
+          fallback: 'copy', // fallback method to use if max size is exceeded
+        }),
+      ],
     }),
     copy({
       targets: [
         {
-          src: "src/variables.scss",
-          dest: "build",
-          rename: "variables.scss"
+          src: 'src/variables.scss',
+          dest: 'build',
+          rename: 'variables.scss',
         },
         {
-          src: "src/typography.scss",
-          dest: "build",
-          rename: "typography.scss"
-        }
-      ]
-    })
-  ]
+          src: 'src/typography.scss',
+          dest: 'build',
+          rename: 'typography.scss',
+        },
+        {
+          src: 'src/SurveyComponent/assets',
+          dest: 'build/SurveyComponent/',
+        },
+      ],
+    }),
+    svg(),
+    image(),
+    url(),
+  ],
 };
