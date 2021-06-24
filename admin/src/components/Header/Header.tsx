@@ -1,4 +1,7 @@
 import * as React from 'react';
+import app from '../../services/firebase.service';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import {
   Toolbar,
@@ -10,7 +13,6 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import app from '../../services/firebase.service';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,19 +31,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Header({
-  currentUser,
-}: {
-  currentUser: any;
-}): JSX.Element {
+const Header = () => {
   const classes = useStyles();
+  const { currentUser } = useContext(AuthContext); // current user data
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="inherit">
         <Toolbar>
           <Typography component="h2" variant="h5" color="inherit" noWrap>
-            Title
+            Survey
           </Typography>
           <IconButton
             edge="start"
@@ -67,4 +66,6 @@ export default function Header({
       </AppBar>
     </div>
   );
-}
+};
+
+export default Header;
