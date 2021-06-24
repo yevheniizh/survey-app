@@ -15,16 +15,21 @@ import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 interface TitleItemProps {
   title: string;
   titleIndex: number;
+  onEditSubmit: Function; // TEMP: helper mock function
 }
 
-const TitleItem = ({ title, titleIndex }: TitleItemProps) => {
+const TitleItem = ({
+  title,
+  titleIndex,
+  onEditSubmit, // TEMP: helper mock function
+}: TitleItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
 
   const onSubmit = (event: any) => {
     event.preventDefault();
     setIsEditing(false);
-    console.log('Submitted');
+    onEditSubmit(newTitle, titleIndex); // TEMP: helper mock function
   };
 
   const onChange = (event: any) => {

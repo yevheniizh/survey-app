@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { useState } from 'react';
 import TitlesList from './TitlesList';
+import SurveyMock from './SurveyMock';
 
 import { Grid, Typography, Box, Paper } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
+// TEMP: recieved titles by Author id
 const titlesMock = [
   'How do you feel about us?',
   'Can we contact you for more input?',
@@ -11,8 +14,7 @@ const titlesMock = [
   'On a scale of 0 to 10, how likely are you to recommend us to a friend or family member?',
   'That’s great! What do you like the most?',
   'Sorry to hear that :( Please tell us what happened',
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias dolores quos, reiciendis fugiat asperiores, omnis, earum excepturi facilis dolor eaque numquam sunt deserunt illo quisquam. Corporis explicabo, inventore numquam dolores nostrum est ducimus vero voluptate fuga at unde quam repellendus dolor eligendi ex sapiente! Praesentium dolorum minus reprehenderit maiores nulla.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique dolorum voluptatibus odio soluta neque unde quod iste eius veniam nam.',
+  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias dolores quos, reiciendis fugiat asperiores, omnis, earum excepturi facilis dolor eaque numquam sunt deserunt illo quisquam.',
 ];
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,6 +34,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Dashboard = () => {
   const classes = useStyles();
+
+  // TEMP: useState helper for simulation mockTitles updating
+  const [newTitlesMock, setNewTitlesMock] = useState(titlesMock);
+
+  // TEMP: helper mock function for simulation mockTitles updating
+  const onEditSubmit = (newTitle: string, titleIndex: number) => {
+    const titles = newTitlesMock.map((item, itemIndex) => {
+      if (titleIndex === itemIndex) return newTitle;
+      return item;
+    });
+    setNewTitlesMock(titles);
+  };
 
   return (
     <Box mx={3}>
@@ -57,7 +71,10 @@ const Dashboard = () => {
             >
               Edit Titles
             </Typography>
-            <TitlesList titlesMock={titlesMock} />
+            <TitlesList
+              titlesMock={newTitlesMock}
+              onEditSubmit={onEditSubmit} // TEMP: helper mock function
+            />
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6} md={6} xl={6}>
@@ -69,8 +86,10 @@ const Dashboard = () => {
               align="center"
               noWrap
             >
-              Demo
+              Survey Demo
             </Typography>
+            {/* TEMP: helper mock Survey component */}
+            <SurveyMock titlesMock={newTitlesMock} />
           </Paper>
         </Grid>
       </Grid>
