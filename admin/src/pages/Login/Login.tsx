@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { LOGIN_ROUTE, SIGN_UP_ROUTE } from '../../utils/consts';
 import styles from './Login.module.css';
@@ -9,7 +10,6 @@ import {
   formLogin,
   formSignUp,
 } from '@alega-lab/my-perfect-package';
-import loginErrorHandler from '../../services/loginErrorHandler.service';
 
 /** Material UI */
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
@@ -18,9 +18,28 @@ import { blue } from '@material-ui/core/colors';
 const Login = ({ match }: { match: any }) => {
   /** define what route is rendering now */
   const isSignupPage = match.path === '/signup';
-  /** form error handler */
-  const { errorState, errorActions } = loginErrorHandler();
-  const { emailErrorState, passwordErrorState } = errorState;
+
+  const [emailError, setEmailError] = useState({
+    isError: false,
+    message: '',
+  });
+  const [passwordError, setPasswordError] = useState({
+    isError: false,
+    message: '',
+  });
+
+  const errorActions = (error: any) => {
+    if (
+      error.code === 'auth/wrong-password' ||
+      error.code === 'auth/weak-password'
+    ) {
+      setEmailError({ isError: false, message: '' });
+      setPasswordError({ isError: true, message: error.message });
+    } else {
+      setEmailError({ isError: true, message: error.message });
+      setPasswordError({ isError: false, message: '' });
+    }
+  };
 
   const onSubmit = isSignupPage
     ? (event: any) => formSignUp(event, errorActions)
@@ -38,8 +57,8 @@ const Login = ({ match }: { match: any }) => {
               variant="outlined"
               margin="normal"
               required
-              error={emailErrorState.isError}
-              helperText={emailErrorState.message}
+              error={emailError.isError}
+              helperText={emailError.message}
               fullWidth
               id="email"
               label="Email Address"
@@ -51,8 +70,8 @@ const Login = ({ match }: { match: any }) => {
               variant="outlined"
               margin="normal"
               required
-              error={passwordErrorState.isError}
-              helperText={passwordErrorState.message}
+              error={passwordError.isError}
+              helperText={passwordError.message}
               fullWidth
               name="password"
               label="Password"
