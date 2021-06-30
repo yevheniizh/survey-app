@@ -69,10 +69,11 @@
     "url": "git@github.com:alega-lab/survey.git"
   },
   "dependencies": {
-    "firebase": "^8.6.8",
-    "react-firebase-hooks": "^3.0.4",
+    "@material-ui/core": "^4.11.4",
     "@types/postcss-url": "^8.0.1",
+    "firebase": "^8.6.8",
     "postcss": "^8.3.5",
-    "postcss-url": "^10.1.3"
+    "postcss-url": "^10.1.3",
+    "react-firebase-hooks": "^3.0.4"
   }
 }
