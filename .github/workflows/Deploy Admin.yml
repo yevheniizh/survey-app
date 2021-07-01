@@ -16,6 +16,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Creating & Initializing .npmrc variables for Admin Package
+      run: |
+        cd admin
+        pwd
+        echo "@alega-lab:registry=https://npm.pkg.github.com
+        //npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
+
       - name: Build
         working-directory: './admin'
         run: npm ci && npm run build
