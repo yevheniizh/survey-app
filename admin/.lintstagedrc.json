@@ -1,3 +1,7 @@
 {
-  "src/**/*.{ts,tsx,js,jsx}": ["prettier --write"]
+  "src/**/*.{ts,tsx,js,jsx}": [
+    "npm run test:staged",
+    "prettier --write",
+    "npm run lint:staged"
+  ]
 }
