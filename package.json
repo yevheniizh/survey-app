@@ -1,0 +1,25 @@
+{
+  "name": "survey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alega-lab/survey.git"
+  },
+  "keywords": [],
+  "author": "Yevhenii Zhyrov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alega-lab/survey/issues"
+  },
+  "homepage": "https://github.com/alega-lab/survey#readme"
+}

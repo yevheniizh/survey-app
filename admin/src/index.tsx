@@ -1,35 +1,12 @@
-import React, { createContext } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import firebase from 'firebase';
-import 'firebase/auth';
 import reportWebVitals from './reportWebVitals';
-
-firebase.initializeApp({
-  apiKey: 'AIzaSyDXd9tTpe3joIJNx3Bqw0WJkhBRpKLqSSU',
-  authDomain: 'admin--survey.firebaseapp.com',
-  projectId: 'admin--survey',
-  storageBucket: 'admin--survey.appspot.com',
-  messagingSenderId: '226587562987',
-  appId: '1:226587562987:web:19be7a6b3fbf24e9f4ffae',
-  measurementId: 'G-C09JY3RV7E',
-});
-
-export const MyContext = createContext({} as any);
-
-const auth = firebase.auth();
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyContext.Provider
-      value={{
-        auth,
-        firebase,
-      }}
-    >
-      <App />
-    </MyContext.Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
