@@ -1,15 +1,17 @@
-import * as React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import AppRouter from './AppRouter';
-import { AuthProvider } from './contexts/AuthContext';
+import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
+import './App.css';
+import AppRouter from './components/AppRouter';
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+    <div className="App">
+      <header className="App-header">
         <AppRouter />
-      </BrowserRouter>
-    </AuthProvider>
+      </header>
+    </div>
+    </BrowserRouter>
   );
 }
 
