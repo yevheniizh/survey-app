@@ -1,0 +1,93 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .slider {
+    flex: 1;
+    flex-grow: 1;
+    height: 60px;
+    padding-top: 55px;
+  }
+  
+  .thumb {
+    background: #ffa188;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 0;
+  }
+  
+  .trackFilled {
+    height: 2px;
+    margin-top: 20px;
+    background: #ffa188;
+  }
+  .trackEmpty {
+    height: 2px;
+    margin-top: 20px;
+    background: #d3dfeb;
+  }
+  
+  .indicator {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    margin-left: -10px;
+  }
+  
+  .indicator text {
+    width: 11px;
+    height: 19px;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .indicatorMin {
+    flex: 1;
+    flex-grow: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #9ba5ae;
+    margin-right: 10px;
+    padding-top: 64px;
+  }
+  .indicatorMax {
+    flex: 1;
+    flex-grow: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #9ba5ae;
+    margin-left: 10px;
+    padding-top: 64px;
+  }
+  
+  .legend {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .legendMin {
+    flex: 1;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    color: #9ba5ae;
+    max-width: 30%;
+  }
+  .legendMax {
+    flex: 1;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    color: #9ba5ae;
+    text-align: right;
+    max-width: 30%;
+  }
