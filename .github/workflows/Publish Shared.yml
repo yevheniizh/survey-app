@@ -8,18 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' )
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Build
-        working-directory: './shared'
+        working-directory: './admin'
         run: npm ci && npm run build
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Publish
-      uses: alega-lab/survey/shared@master
-      run:
-          npm publish --ignore-scripts
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish
+        uses: alega-lab/survey/shared@master
+        run:  npm publish --ignore-scripts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
