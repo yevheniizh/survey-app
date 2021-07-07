@@ -1,5 +1,4 @@
 name: Node.js Package
-
 'on':
   push:
     branches:
@@ -7,7 +6,6 @@ name: Node.js Package
     # Optionally configure to run only for specific files/folders.
     paths:
       - 'shared/**'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +15,6 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
@@ -30,6 +27,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
+          scope: '@alega-lab'
       - run: npm ci
       - run: npm publish
         env:
