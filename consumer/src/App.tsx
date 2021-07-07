@@ -1,12 +1,29 @@
 import React from 'react';
-import { SurveyContainer } from './SurveyContainer';
+import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
+import { Survey, UseReadDoc } from '@alega-lab/my-perfect-package';
 
-const App = () => {
-  return (
-    <>
-      <SurveyContainer />
-    </>
-  );
+const Wrapper = () => {
+  // @ts-ignore
+  let { id } = useParams();
+  const props = {
+    collection: 'surveys',
+    docId: id,
+    Component: Survey,
+  };
+  return <UseReadDoc {...props} />;
 };
 
-export default App;
+function LayoutWrapper({ Component, ...rest }: any) {
+  return <Route {...rest} render={(props) => <Wrapper />} />;
+}
+
+export default () => {
+  return (
+    <Router>
+      <Switch>
+        <LayoutWrapper path="/surveys/:id" Component={Survey} />
+        <LayoutWrapper path="/" Component={() => <h1>sorry no data</h1>} />
+      </Switch>
+    </Router>
+  );
+};
