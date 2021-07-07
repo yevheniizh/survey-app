@@ -1,7 +1,7 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { useParams } from "react-router";
-import { Button } from "@material-ui/core";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import { useParams } from 'react-router';
+import { Button } from '@material-ui/core';
 import {
   SurveyType,
   Survey,
@@ -10,7 +10,7 @@ import {
   LocationEnum,
   AttributesEnum,
   surveyDefaults,
-} from "@alega-lab/my-perfect-package";
+} from '@alega-lab/my-perfect-package';
 
 const Editor = ({ setSurveyData, data, lang }: any) => {
   const Input = ({ name, path }: any) => {
@@ -37,13 +37,15 @@ const Editor = ({ setSurveyData, data, lang }: any) => {
 
   return (
     <div>
-      <div className="form">
-        <div className="formEditor">
+      <div className='form'>
+        <div className='formEditor'>
           <Input name={LocationEnum.logo} path={locationPath} />
           <Input name={ContentEnum.greeting} path={contentPath} />
+          <Input name={ContentEnum.feedbackAwful} path={contentPath} />
           <Input name={ContentEnum.feedbackBad} path={contentPath} />
           <Input name={ContentEnum.feedBackNeutral} path={contentPath} />
           <Input name={ContentEnum.feedbackGood} path={contentPath} />
+          <Input name={ContentEnum.feedbackWow} path={contentPath} />
         </div>
       </div>
     </div>
@@ -55,9 +57,9 @@ const LangSwitch = ({ lang, setLang }: any) => {
   };
   return (
     <select onChange={onChange}>
-      <option value="en">en</option>
-      <option value="ru">ru</option>
-      <option value="ua">ua</option>
+      <option value='en'>en</option>
+      <option value='ru'>ru</option>
+      <option value='ua'>ua</option>
     </select>
   );
 };
@@ -65,13 +67,13 @@ export const SurveyEditor = (data: SurveyType) => {
   // @ts-ignore
   let { id } = useParams();
   const [surveyData, setSurveyData] = React.useState(data);
-  const [lang, setLang] = React.useState("en");
+  const [lang, setLang] = React.useState('en');
   const surveyProps = { ...surveyData, lang, setLang };
   const [loading, setLoading] = React.useState(false);
   const updateSurvey = async () => {
     setLoading(true);
     try {
-      const res = await db.collection("surveys").doc(id).set(surveyData);
+      const res = await db.collection('surveys').doc(id).set(surveyData);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -84,8 +86,8 @@ export const SurveyEditor = (data: SurveyType) => {
           <LangSwitch lang={lang} setLang={setLang} />
           <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             disabled={loading}
             onClick={updateSurvey}
           >
