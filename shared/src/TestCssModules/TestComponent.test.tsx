@@ -6,7 +6,6 @@ import { TestComponentProps } from './TestComponent.types';
 
 describe('Test Component', () => {
   let props: TestComponentProps;
-  console.log('12312');
 
   beforeEach(() => {
     props = {
