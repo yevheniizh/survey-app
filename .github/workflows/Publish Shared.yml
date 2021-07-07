@@ -1,0 +1,26 @@
+name: publish package on merge
+'on':
+  push:
+    branches:
+      - master
+    # Optionally configure to run only for specific files/folders.
+    paths:
+      - 'shared/**'
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Build
+        working-directory: './shared'
+        run: npm ci && npm run build
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        uses: alega-lab/survey/shared@master
+        with:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
