@@ -15,7 +15,6 @@ const Button: React.FC<ButtonProps> = ({
   onClickHandler,
   disabledBtn = false,
 }) => {
-  console.log('test');
   const generalStyles = classnames(
     styles.button,
     extraClassName && extraClassName
