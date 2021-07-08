@@ -68,9 +68,6 @@
   "repository": {
     "url": "git@github.com:alega-lab/survey.git"
   },
-  "publishConfig": {
-   "@alega-lab:registry": "https://npm.pkg.github.com"
- },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@types/postcss-url": "^8.0.1",
