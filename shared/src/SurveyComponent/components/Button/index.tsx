@@ -10,13 +10,12 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  console.log('test');
-
   title = 'Send',
   extraClassName,
   onClickHandler,
   disabledBtn = false,
 }) => {
+  console.log('test');
   const generalStyles = classnames(
     styles.button,
     extraClassName && extraClassName
