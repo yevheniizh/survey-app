@@ -48,10 +48,6 @@ export default {
           dest: 'build',
           rename: 'typography.scss',
         },
-        {
-          src: 'src/SurveyComponent/assets',
-          dest: 'build/SurveyComponent/',
-        },
       ],
     }),
     svg(),

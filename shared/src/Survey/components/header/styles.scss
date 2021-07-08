@@ -1,0 +1,113 @@
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 256px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &_collapsed {
+    height: 114px;
+  }
+}
+
+select:focus {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.logo {
+  height: 80px;
+  margin-top: 30px;
+  border: solid 1px #ffffff;
+  background-image: linear-gradient(135deg, #303f56 1%, #0c182b);
+  border-radius: 50%;
+}
+
+.title {
+  margin-top: 15px;
+  font-size: 21px;
+  font-weight: 700;
+  font-family: 'Montserrat';
+}
+.subTitle {
+  margin-top: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Montserrat';
+}
+
+/* Lang component*/
+.headerLang {
+  width: 75px;
+  border-radius: 20px;
+  background: #fff;
+  position: absolute;
+  padding: 0.6rem 0.6rem 0.6rem 0;
+  left: 5%;
+  top: 15%;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  color: #000000;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.headerLang_opened {
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+  padding: 0.6rem 0.6rem 0.6rem 0;
+}
+.headerLang__dropdown {
+  width: 13px;
+  height: 10px;
+  margin-top: 0.33rem;
+  background: url(https://res.cloudinary.com/dl7s75ubb/image/upload/v1625226662/Survey/icon-language-dropdown_pb5ejd.png);
+  cursor: pointer;
+  z-index: 999;
+}
+.headerLang__dropdown_opened {
+  background: url(https://res.cloudinary.com/dl7s75ubb/image/upload/v1625226662/Survey/icon-language-dropdown-open_fbgcba.png);
+}
+.headerLang__list {
+  margin: 0;
+  padding: 0 0 0 0.6rem;
+  line-height: 2;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  list-style: none;
+}
+
+.langList__item:hover {
+  color: #ffa188;
+}
+.langList__item::before {
+  content: url(https://res.cloudinary.com/dl7s75ubb/image/upload/v1625226662/Survey/icon-language-selected_wxkopm.png);
+  margin-right: 0.3rem;
+  opacity: 0;
+}
+
+.langList__item_active {
+  color: #ffa188;
+}
+
+.langList__item_active::before {
+  // content: url(https://res.cloudinary.com/dl7s75ubb/image/upload/v1625226662/Survey/icon-language-selected_wxkopm.png);
+  // margin-right: 0.3rem;
+  opacity: 1;
+}
+
+.headerDropdown {
+  margin-left: 0.5rem;
+}
