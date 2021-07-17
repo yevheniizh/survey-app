@@ -1,7 +1,7 @@
-import React from "react";
-import { UseReadCollection } from "./hook";
-import { ReadCollectionType } from "../index";
-import { db } from "@alega-lab/my-perfect-package";
+import React from 'react';
+import { UseReadCollection } from './hook';
+import { ReadCollectionType } from '../index';
+import { db } from '@zzzhyrov/my-perfect-package';
 
 const NoResults = ({ collection, defaults, Redirect }: any) => {
   const [loading, setLoading] = React.useState(false);

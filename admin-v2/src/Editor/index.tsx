@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router';
@@ -9,8 +10,7 @@ import {
   ContentEnum,
   LocationEnum,
   AttributesEnum,
-  surveyDefaults,
-} from '@alega-lab/my-perfect-package';
+} from '@zzzhyrov/my-perfect-package';
 
 const Editor = ({ setSurveyData, data, lang }: any) => {
   const Input = ({ name, path }: any) => {
@@ -37,8 +37,8 @@ const Editor = ({ setSurveyData, data, lang }: any) => {
 
   return (
     <div>
-      <div className='form'>
-        <div className='formEditor'>
+      <div className="form">
+        <div className="formEditor">
           <Input name={LocationEnum.logo} path={locationPath} />
           <Input name={ContentEnum.greeting} path={contentPath} />
           <Input name={ContentEnum.feedbackAwful} path={contentPath} />
@@ -57,9 +57,9 @@ const LangSwitch = ({ lang, setLang }: any) => {
   };
   return (
     <select onChange={onChange}>
-      <option value='en'>en</option>
-      <option value='ru'>ru</option>
-      <option value='ua'>ua</option>
+      <option value="en">en</option>
+      <option value="ru">ru</option>
+      <option value="ua">ua</option>
     </select>
   );
 };
@@ -86,8 +86,8 @@ export const SurveyEditor = (data: SurveyType) => {
           <LangSwitch lang={lang} setLang={setLang} />
           <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             disabled={loading}
             onClick={updateSurvey}
           >

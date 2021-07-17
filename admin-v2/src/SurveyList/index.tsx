@@ -1,7 +1,7 @@
 import { ReadCollectionType } from "../api";
 import { ReadCollection } from "../api";
 import { SurveyList } from "./SurveyList";
-import { surveyDefaults } from "@alega-lab/my-perfect-package";
+import { surveyDefaults } from "@zzzhyrov/my-perfect-package";
 import { useHistory, Redirect } from "react-router-dom";
 export const Wrapper = () => {
   let history = useHistory();

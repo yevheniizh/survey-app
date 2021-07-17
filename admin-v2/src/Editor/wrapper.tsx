@@ -1,5 +1,5 @@
 import React from "react";
-import {UseReadDoc} from "@alega-lab/my-perfect-package";
+import {UseReadDoc} from "@zzzhyrov/my-perfect-package";
 import {useParams} from 'react-router';
 import {SurveyEditor} from './index'
 export const Wrapper = () => {
