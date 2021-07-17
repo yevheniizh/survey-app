@@ -1,15 +1,15 @@
 {
   "projects": {
-    "default": "admin--survey"
+    "default": "admin--survey-app"
   },
   "targets": {
     "admin--survey": {
       "hosting": {
         "admin": [
-          "admin--survey"
+          "admin--survey-app"
         ],
         "consumer": [
-          "consumer--survey"
+          "consumer--survey-app"
         ]
       }
     }

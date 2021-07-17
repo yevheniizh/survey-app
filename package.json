@@ -1,6 +1,6 @@
 {
-  "name": "survey",
-  "version": "1.0.36",
+  "name": "survey-app",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "dependencies": {},
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alega-lab/survey.git"
+    "url": "git+https://github.com/zzzhyrov/survey-app.git"
   },
   "keywords": [],
   "author": "Yevhenii Zhyrov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alega-lab/survey/issues"
+    "url": "https://github.com/zzzhyrov/survey-app/issues"
   },
-  "homepage": "https://github.com/alega-lab/survey#readme"
+  "homepage": "https://github.com/zzzhyrov/survey-app#readme"
 }
