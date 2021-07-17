@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { fireAuth } from '@alega-lab/my-perfect-package';
+import { fireAuth } from '@zzzhyrov/my-perfect-package';
 import Loader from '../components/Loader';
 
 export const AuthContext = React.createContext({} as any);

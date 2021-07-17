@@ -9,7 +9,7 @@ import {
   googleLogin,
   formLogin,
   formSignUp,
-} from '@alega-lab/my-perfect-package';
+} from '@zzzhyrov/my-perfect-package';
 
 /** Material UI */
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
@@ -47,7 +47,7 @@ const Login = ({ match }: { match: any }) => {
 
   return (
     <Box className={styles.login__root} pt={8}>
-      <Grid container component="main" justify="center">
+      <Grid container component="main" justifyContent="center">
         <Grid item xs={12} sm={8} md={5}>
           <Typography component="h1" variant="h4">
             {isSignupPage ? 'Create an account' : 'Log In'}

@@ -60,7 +60,12 @@ const Dashboard = () => {
       >
         Admin Dashboard
       </Typography>
-      <Grid container component="main" justify="space-between" spacing={3}>
+      <Grid
+        container
+        component="main"
+        justifyContent="space-between"
+        spacing={3}
+      >
         <Grid item xs={12} sm={6} md={6} xl={6}>
           <Paper className={classes.dashboard__paper} elevation={6}>
             <Typography

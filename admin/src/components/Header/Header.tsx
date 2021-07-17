@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireAuth } from '@alega-lab/my-perfect-package';
+import { fireAuth } from '@zzzhyrov/my-perfect-package';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
