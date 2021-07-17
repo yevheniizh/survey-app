@@ -3,7 +3,7 @@ import {
   SurveyType,
   Survey,
   surveyDefaults,
-} from '@alega-lab/my-perfect-package';
+} from '@zzzhyrov/my-perfect-package';
 
 export const SurveyContainer = () => {
   const data: SurveyType = surveyDefaults;

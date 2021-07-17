@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {UseReadDoc} from '@alega-lab/my-perfect-package';
+import {UseReadDoc} from '@zzzhyrov/my-perfect-package';
 const ExampleComponent = ({data}:{data:any}) => {
     return (
         <div>Hey {JSON.stringify(data)}</div>

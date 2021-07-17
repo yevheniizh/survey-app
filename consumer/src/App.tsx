@@ -1,6 +1,12 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
-import { Survey, UseReadDoc } from '@alega-lab/my-perfect-package';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from 'react-router-dom';
+import { Survey, UseReadDoc } from '@zzzhyrov/my-perfect-package';
 
 const Wrapper = () => {
   // @ts-ignore
