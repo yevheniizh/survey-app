@@ -1,6 +1,6 @@
 {
-  "name": "@alega-lab/my-perfect-package",
-  "version": "1.0.38",
+  "name": "@zzzhyrov/my-perfect-package",
+  "version": "0.1.0",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "files": [
@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "generate": "node ./util/create-component",
     "prepublishOnly": "npm run build",
-    "registry": "NPM_TOKEN=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 yarn publish"
+    "registry": "NPM_TOKEN= yarn publish"
   },
   "keywords": [
     "React",
@@ -66,7 +66,7 @@
     "trailingComma": "es5"
   },
   "repository": {
-    "url": "git@github.com:alega-lab/survey.git"
+    "url": "git@github.com:zzzhyrov/survey-app.git"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
