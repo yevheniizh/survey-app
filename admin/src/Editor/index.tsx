@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router';
@@ -41,11 +42,9 @@ const Editor = ({ setSurveyData, data, lang }: any) => {
         <div className="formEditor">
           <Input name={LocationEnum.logo} path={locationPath} />
           <Input name={ContentEnum.greeting} path={contentPath} />
-          <Input name={ContentEnum.feedbackAwful} path={contentPath} />
           <Input name={ContentEnum.feedbackBad} path={contentPath} />
           <Input name={ContentEnum.feedBackNeutral} path={contentPath} />
           <Input name={ContentEnum.feedbackGood} path={contentPath} />
-          <Input name={ContentEnum.feedbackWow} path={contentPath} />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { db } from '@zzzhyrov/my-perfect-package';
 const NoResults = ({ collection, defaults, Redirect }: any) => {
   const [loading, setLoading] = React.useState(false);
   const [id, setId] = React.useState(null);
+  console.log(id);
   if (id) {
     /* eslint-disable */
     return <Redirect to={`/${collection}/${id}`} />; //history.push(`/${collection}/${id}`);
@@ -15,6 +16,8 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
     setLoading(true);
     try {
       const docRef = await db.collection(collection).add(defaults);
+      console.log(docRef);
+
       setId(docRef.id);
       setLoading(false);
     } catch (error) {
@@ -32,6 +35,7 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
 };
 const Loading = () => <h1>Loading...</h1>;
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const Error = (error: any) => {
   console.log(error);
   return <h1>something went wrong</h1>;

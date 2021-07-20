@@ -1,3 +1,5 @@
+/* eslint-disable unused-imports/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,13 +15,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './Menu';
-
+import { Button } from '@material-ui/core';
+import { fireAuth } from '@zzzhyrov/my-perfect-package';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 function Copyright() {
   return (
@@ -115,7 +119,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Board = ({children}:any) => {
+export const Board = ({ children }: any) => {
+  const { currentUser } = useContext(AuthContext);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -129,18 +134,30 @@ export const Board = ({children}:any) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar
+        position="absolute"
+        className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
             Dashboard
           </Typography>
           <IconButton color="inherit">
@@ -148,6 +165,15 @@ export const Board = ({children}:any) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <Box px={1}>{currentUser.displayName || 'User'}</Box>
+          <Button
+            color="inherit"
+            size="small"
+            variant="outlined"
+            onClick={() => fireAuth.signOut()}
+          >
+            Sign out
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -180,4 +206,4 @@ export const Board = ({children}:any) => {
       </main>
     </div>
   );
-}
+};
