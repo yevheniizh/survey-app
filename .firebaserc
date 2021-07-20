@@ -3,7 +3,7 @@
     "default": "admin--survey-app"
   },
   "targets": {
-    "admin--survey": {
+    "admin--survey-app": {
       "hosting": {
         "admin": [
           "admin--survey-app"
