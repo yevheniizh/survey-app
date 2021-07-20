@@ -1,6 +1,7 @@
-import Home from './pages/Home';
 import Login from './pages/Login';
 import { HOME_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from './utils/consts';
+import { Wrapper as SurveyEditor } from './Editor/wrapper';
+import { Wrapper as SurveyList } from './SurveyList';
 
 export const publicRoutes = [
   {
@@ -16,6 +17,10 @@ export const publicRoutes = [
 export const privateRoutes = [
   {
     path: HOME_ROUTE,
-    Component: Home,
+    Component: SurveyList,
+  },
+  {
+    path: '/surveys/:id',
+    Component: SurveyEditor,
   },
 ];
