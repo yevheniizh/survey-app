@@ -51,6 +51,5 @@ export const formSignUp = async (event, errorActions) => {
   }
 };
 export const fireAuth = app.auth();
-export const fireSignOut = fireAuth.signOut();
 export const db = app.firestore();
 export const st = app.storage();
