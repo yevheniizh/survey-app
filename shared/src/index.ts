@@ -4,7 +4,6 @@ export {
   db,
   st,
   fireAuth,
-  fireSignOut,
   formSignUp,
   formLogin,
   googleLogin,
