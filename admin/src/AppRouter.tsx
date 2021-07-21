@@ -2,15 +2,9 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import {
-  // privateRoutes,
-  publicRoutes,
-} from './routes';
+import { privateRoutes, publicRoutes } from './routes';
 import { HOME_ROUTE, LOGIN_ROUTE } from './utils/consts';
 import { AuthContext } from './contexts/AuthContext';
-
-import { Wrapper as SurveyEditor } from './Editor/wrapper';
-import { Wrapper as SurveyList } from './SurveyList';
 
 import { Board } from './Layout';
 
@@ -33,13 +27,10 @@ const AppRouter = () => {
 
   return currentUser ? (
     <Switch>
-      <LayoutWrapper path={'/surveys/:id'} Component={SurveyEditor} />
-      <LayoutWrapper path={'/'} Component={SurveyList} />
-
-      <Redirect to={HOME_ROUTE} exact />
-      {/* {privateRoutes.map(({ path, Component }) => (
-        <LayoutWrapper key={path} path={path} Component={Component} />
-      ))} */}
+      {privateRoutes.map(({ path, Component }) => (
+        <LayoutWrapper key={path} path={path} Component={Component} exact />
+      ))}
+      <Redirect to={HOME_ROUTE} />
     </Switch>
   ) : (
     <Switch>
