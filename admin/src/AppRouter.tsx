@@ -4,7 +4,7 @@ import { privateRoutes, publicRoutes } from './routes';
 import { HOME_ROUTE, LOGIN_ROUTE } from './utils/consts';
 import { AuthContext } from './contexts/AuthContext';
 
-import { Board } from './pages/Board';
+import Board from './pages/Board';
 
 const AppRouter = () => {
   const { currentUser } = React.useContext(AuthContext);

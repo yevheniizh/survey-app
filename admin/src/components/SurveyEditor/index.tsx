@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseReadDoc } from '@zzzhyrov/my-perfect-package';
 import { useParams } from 'react-router';
-import { SurveyEditor } from './index';
+import { SurveyEditor } from './SurveyEditor';
 export const Wrapper = () => {
   // @ts-ignore
   let { id } = useParams();

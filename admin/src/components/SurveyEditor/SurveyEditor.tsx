@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unused-imports/no-unused-vars */
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router';
-import { Button } from '@material-ui/core';
 import {
   SurveyType,
   Survey,
@@ -12,6 +8,9 @@ import {
   LocationEnum,
   AttributesEnum,
 } from '@zzzhyrov/my-perfect-package';
+
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const Editor = ({ setSurveyData, data, lang }: any) => {
   const Input = ({ name, path }: any) => {
@@ -50,7 +49,7 @@ const Editor = ({ setSurveyData, data, lang }: any) => {
     </div>
   );
 };
-const LangSwitch = ({ lang, setLang }: any) => {
+const LangSwitch = ({ setLang }: any) => {
   const onChange = (e: any) => {
     return setLang(e.target.value);
   };
@@ -72,31 +71,29 @@ export const SurveyEditor = (data: SurveyType) => {
   const updateSurvey = async () => {
     setLoading(true);
     try {
-      const res = await db.collection('surveys').doc(id).set(surveyData);
+      await db.collection('surveys').doc(id).set(surveyData);
       setLoading(false);
     } catch (err) {
       setLoading(false);
     }
   };
   return (
-    <React.Fragment>
-      <Grid container spacing={3} lg={12}>
-        <Grid item lg={4}>
-          <LangSwitch lang={lang} setLang={setLang} />
-          <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={loading}
-            onClick={updateSurvey}
-          >
-            Save
-          </Button>
-        </Grid>
-        <Grid item lg={8}>
-          <Survey {...surveyProps} />
-        </Grid>
+    <Grid container spacing={3} justifyContent="space-between">
+      <Grid item lg={6}>
+        <LangSwitch lang={lang} setLang={setLang} />
+        <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={loading}
+          onClick={updateSurvey}
+        >
+          Save
+        </Button>
       </Grid>
-    </React.Fragment>
+      <Grid item lg={6}>
+        <Survey {...surveyProps} />
+      </Grid>
+    </Grid>
   );
 };
