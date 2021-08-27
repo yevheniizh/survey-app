@@ -1,15 +1,13 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import * as React from 'react';
-import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 import { HOME_ROUTE, LOGIN_ROUTE } from './utils/consts';
 import { AuthContext } from './contexts/AuthContext';
 
-import { Board } from './Layout';
+import { Board } from './pages/Board';
 
 const AppRouter = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = React.useContext(AuthContext);
 
   function LayoutWrapper({ Component, ...rest }: any) {
     return (

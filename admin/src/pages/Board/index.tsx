@@ -1,29 +1,27 @@
-/* eslint-disable unused-imports/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import * as React from 'react';
+import { fireAuth } from '@zzzhyrov/my-perfect-package';
+import { AuthContext } from '../../contexts/AuthContext';
+import { mainListItems, secondaryListItems } from './Menu';
 import clsx from 'clsx';
+
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
+import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './Menu';
-import { Button } from '@material-ui/core';
-import { fireAuth } from '@zzzhyrov/my-perfect-package';
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
 
 function Copyright() {
   return (
@@ -33,7 +31,6 @@ function Copyright() {
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -120,16 +117,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Board = ({ children }: any) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = React.useContext(AuthContext);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleDrawer = () => {
+    setOpen(!open);
   };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -143,7 +136,7 @@ export const Board = ({ children }: any) => {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleDrawer}
             className={clsx(
               classes.menuButton,
               open && classes.menuButtonHidden
@@ -176,6 +169,7 @@ export const Board = ({ children }: any) => {
           </Button>
         </Toolbar>
       </AppBar>
+
       <Drawer
         variant="permanent"
         classes={{
@@ -184,7 +178,7 @@ export const Board = ({ children }: any) => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawer}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -193,6 +187,7 @@ export const Board = ({ children }: any) => {
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
