@@ -18,8 +18,8 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
       const docRef = await db.collection(collection).add(defaults);
       console.log(docRef);
 
-      setId(docRef.id);
       setLoading(false);
+      setId(docRef.id);
     } catch (error) {
       setLoading(false);
       console.log(error);
