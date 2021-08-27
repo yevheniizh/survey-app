@@ -8,6 +8,7 @@ import {
   LocationEnum,
   AttributesEnum,
 } from '@zzzhyrov/my-perfect-package';
+import LangSwitcher from './LangSwitcher';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -49,18 +50,7 @@ const Editor = ({ setSurveyData, data, lang }: any) => {
     </div>
   );
 };
-const LangSwitch = ({ setLang }: any) => {
-  const onChange = (e: any) => {
-    return setLang(e.target.value);
-  };
-  return (
-    <select onChange={onChange}>
-      <option value="en">en</option>
-      <option value="ru">ru</option>
-      <option value="ua">ua</option>
-    </select>
-  );
-};
+
 export const SurveyEditor = (data: SurveyType) => {
   // @ts-ignore
   let { id } = useParams();
@@ -80,7 +70,7 @@ export const SurveyEditor = (data: SurveyType) => {
   return (
     <Grid container spacing={3} justifyContent="space-between">
       <Grid item lg={6}>
-        <LangSwitch lang={lang} setLang={setLang} />
+        <LangSwitcher lang={lang} setLang={setLang} />
         <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
         <Button
           variant="contained"
