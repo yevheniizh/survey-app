@@ -2,6 +2,7 @@ import React from 'react';
 import { UseReadCollection } from './hook';
 import { ReadCollectionType } from '../index';
 import { db } from '@zzzhyrov/my-perfect-package';
+import { Box, Button } from '@material-ui/core';
 
 const NoResults = ({ collection, defaults, Redirect }: any) => {
   const [loading, setLoading] = React.useState(false);
@@ -26,11 +27,28 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
     }
   };
   return (
-    <div>
-      <button disabled={loading} onClick={onClick}>
-        Create new document
-      </button>
-    </div>
+    <Box
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '200px',
+      }}
+    >
+      <Button
+        disabled={loading}
+        onClick={onClick}
+        variant="contained"
+        color="inherit"
+        size="large"
+        style={{
+          width: '400px',
+          textTransform: 'none',
+        }}
+      >
+        Create New Document
+      </Button>
+    </Box>
   );
 };
 const Loading = () => <h1>Loading...</h1>;
