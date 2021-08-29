@@ -19,7 +19,7 @@ const LangSwitcher = ({ lang, setLang }: any) => {
   };
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl variant="filled" className={classes.formControl}>
       <InputLabel shrink id="langSwitcher_label">
         Language
       </InputLabel>
@@ -27,7 +27,7 @@ const LangSwitcher = ({ lang, setLang }: any) => {
         labelId="langSwitcher_select"
         id="langSwitcher"
         value={lang}
-        defaultValue="en"
+        defaultValue="ua"
         onChange={onChange}
       >
         <MenuItem value="en">en</MenuItem>
