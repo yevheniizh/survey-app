@@ -10,7 +10,8 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
   console.log(id);
   if (id) {
     /* eslint-disable */
-    return <Redirect to={`/${collection}/${id}`} />; //history.push(`/${collection}/${id}`);
+    return <Redirect to={`/${collection}/${id}`} />;
+    // history.push(`/${collection}/${id}`);
     /* eslint-enable */
   }
   const onClick = async () => {
@@ -32,7 +33,7 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '200px',
+        height: '100px',
       }}
     >
       <Button
@@ -63,25 +64,28 @@ export const ReadCollection = ({ data }: { data: ReadCollectionType }) => {
   const { CollectionView, collection, defaults, history, Redirect } = data;
   const { result, error, loading } = UseReadCollection({ ...data });
   console.log(result, error, loading);
-  if (!result.length) {
-    return (
-      <NoResults
-        history={history}
-        Redirect={Redirect}
-        collection={collection}
-        defaults={defaults}
-      />
-    );
-  }
+
   if (error) {
     return <Error />;
   }
+
   if (loading) {
     return <Loading />;
   }
 
   if (result) {
-    return <CollectionView data={result} />;
+    return (
+      <>
+        <NoResults
+          history={history}
+          Redirect={Redirect}
+          collection={collection}
+          defaults={defaults}
+        />
+
+        {!!result.length && <CollectionView data={result} />}
+      </>
+    );
   }
 
   return <h1>I cant understand you</h1>;
