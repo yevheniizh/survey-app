@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+/** material-ui */
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import { Box } from '@material-ui/core';
+
 const Input = ({ name, path, onSetSurveyData }: any) => {
   const pathName = path[name];
   const [value, setValue] = React.useState(pathName);
@@ -18,10 +23,20 @@ const Input = ({ name, path, onSetSurveyData }: any) => {
   };
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <input key={name} value={value} onBlur={onBlur} onChange={onKeyUp} />
-    </div>
+    <Box style={{ marginTop: 10 }}>
+      <Typography id="range-slider" gutterBottom variant="h5" component="h5">
+        {name}
+      </Typography>
+      <TextField
+        fullWidth
+        id={name}
+        key={name}
+        onBlur={onBlur}
+        onChange={onKeyUp}
+        value={value}
+        variant="outlined"
+      />
+    </Box>
   );
 };
 
