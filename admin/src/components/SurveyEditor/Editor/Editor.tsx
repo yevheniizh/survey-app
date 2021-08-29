@@ -59,16 +59,18 @@ const Editor = ({ id, lang, setLang, surveyData, setSurveyData }: any) => {
             path={contentPath}
             onSetSurveyData={onSetSurveyData}
           />
-
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={loading}
-            onClick={updateSurvey}
-          >
-            Save
-          </Button>
         </div>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={loading}
+          onClick={updateSurvey}
+          fullWidth
+          size="large"
+          style={{ marginTop: 15 }}
+        >
+          Save
+        </Button>
       </div>
     </div>
   );
