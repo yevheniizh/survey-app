@@ -1,55 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { useParams } from 'react-router';
-import {
-  SurveyType,
-  Survey,
-  db,
-  ContentEnum,
-  LocationEnum,
-  AttributesEnum,
-} from '@zzzhyrov/my-perfect-package';
-import LangSwitcher from './LangSwitcher';
+import { SurveyType, Survey } from '@zzzhyrov/my-perfect-package';
+import Editor from './Editor';
 
-import Button from '@material-ui/core/Button';
+/** material-ui */
 import Grid from '@material-ui/core/Grid';
 
-const Editor = ({ setSurveyData, data, lang }: any) => {
-  const Input = ({ name, path }: any) => {
-    const pathName = path[name];
-    const [value, setValue] = React.useState(pathName);
-
-    const onKeyUp = (e: any) => {
-      return setValue(e.target.value);
-    };
-    const onBlur = (e: any) => {
-      path[name] = e.target.value;
-      return setSurveyData(JSON.parse(JSON.stringify(data)));
-    };
-    return (
-      <div>
-        <h2>{name}</h2>
-        <input key={name} value={value} onBlur={onBlur} onChange={onKeyUp} />
-      </div>
-    );
-  };
-
-  const contentPath = data[AttributesEnum.translations][lang];
-  const locationPath = data[AttributesEnum.location];
-
-  return (
-    <div>
-      <div className="form">
-        <div className="formEditor">
-          <Input name={LocationEnum.logo} path={locationPath} />
-          <Input name={ContentEnum.greeting} path={contentPath} />
-          <Input name={ContentEnum.feedbackBad} path={contentPath} />
-          <Input name={ContentEnum.feedBackNeutral} path={contentPath} />
-          <Input name={ContentEnum.feedbackGood} path={contentPath} />
-        </div>
-      </div>
-    </div>
-  );
-};
+/** <data> prop are gotten from useReadDoc */
 
 export const SurveyEditor = (data: SurveyType) => {
   // @ts-ignore
@@ -57,29 +14,12 @@ export const SurveyEditor = (data: SurveyType) => {
   const [surveyData, setSurveyData] = React.useState(data);
   const [lang, setLang] = React.useState('en');
   const surveyProps = { ...surveyData, lang, setLang };
-  const [loading, setLoading] = React.useState(false);
-  const updateSurvey = async () => {
-    setLoading(true);
-    try {
-      await db.collection('surveys').doc(id).set(surveyData);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-    }
-  };
+  const editorProps = { id, lang, setLang, surveyData, setSurveyData };
+
   return (
     <Grid container spacing={3} justifyContent="space-between">
       <Grid item lg={6}>
-        <LangSwitcher lang={lang} setLang={setLang} />
-        <Editor data={surveyData} lang={lang} setSurveyData={setSurveyData} />
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={loading}
-          onClick={updateSurvey}
-        >
-          Save
-        </Button>
+        <Editor {...editorProps} />
       </Grid>
       <Grid item lg={6}>
         <Survey {...surveyProps} />
