@@ -48,19 +48,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Menu = ({ open, setOpen }: any) => {
+const Menu = ({ drawerOpened, handleDrawer }: any) => {
   const classes = useStyles();
-  const handleDrawer = () => {
-    setOpen(!open);
-  };
 
   return (
     <Drawer
       variant="permanent"
       classes={{
-        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        paper: clsx(
+          classes.drawerPaper,
+          !drawerOpened && classes.drawerPaperClose
+        ),
       }}
-      open={open}
+      open={drawerOpened}
     >
       <div className={classes.toolbarIcon}>
         <IconButton onClick={handleDrawer}>
