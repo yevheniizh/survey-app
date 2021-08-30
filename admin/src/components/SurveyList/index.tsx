@@ -1,5 +1,5 @@
-import { ReadCollectionType } from '../api';
-import { ReadCollection } from '../api';
+import { ReadCollectionType } from '../../api';
+import { ReadCollection } from '../../api';
 import { SurveyList } from './SurveyList';
 import { surveyDefaults } from '@zzzhyrov/my-perfect-package';
 import { useHistory, Redirect } from 'react-router-dom';

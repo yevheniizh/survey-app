@@ -1,16 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import * as React from 'react';
-import { useEffect, useState } from 'react';
 import { fireAuth } from '@zzzhyrov/my-perfect-package';
 import Loader from '../components/Loader';
 
 export const AuthContext = React.createContext({} as any);
 
 export const AuthProvider = ({ children }: any) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [pending, setPending] = useState(true);
+  const [currentUser, setCurrentUser] = React.useState(null);
+  const [pending, setPending] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     fireAuth.currentUser !== null
       ? setPending(false)
       : fireAuth.onAuthStateChanged((user: any) => {

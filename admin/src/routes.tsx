@@ -1,7 +1,7 @@
-import Login from './pages/Login';
 import { HOME_ROUTE, LOGIN_ROUTE, SIGN_UP_ROUTE } from './utils/consts';
-import { Wrapper as SurveyEditor } from './Editor/wrapper';
-import { Wrapper as SurveyList } from './SurveyList';
+import { Wrapper as SurveyEditor } from './components/SurveyEditor';
+import { Wrapper as SurveyList } from './components/SurveyList';
+import Login from './pages/Login';
 
 export const publicRoutes = [
   {
