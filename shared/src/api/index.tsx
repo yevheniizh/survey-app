@@ -1,16 +1,23 @@
+import * as React from 'react';
 import { useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import { db } from './config';
-import React from 'react';
 
-export const UseReadDoc = ({ docId, collection, Component }) => {
+export const UseReadDoc = ({
+  docId,
+  collection,
+  Component,
+  Loading,
+  Error,
+  props,
+}) => {
   const [value, loading, error] = useDocumentDataOnce(
     db.doc(`${collection}/${docId}`)
   );
 
   return (
     <React.Fragment>
-      {!value && !loading && <strong>Error: {'something went wrong'}</strong>}
-      {loading && <span>Document: Loading...</span>}
+      {!value && !loading && <Error {...props} />}
+      {loading && <Loading {...props} />}
       {value && <Component {...value} />}
     </React.Fragment>
   );
