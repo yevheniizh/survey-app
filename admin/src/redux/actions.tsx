@@ -1,8 +1,11 @@
+import { LOAD_SURVEYS, REQUEST, SUCCESS, FAILURE } from './constants';
 import { db } from '@zzzhyrov/my-perfect-package';
 
 export const loadSurveys =
   ({ collection, where }: any) =>
   async (dispatch: any) => {
+    dispatch({ type: LOAD_SURVEYS + REQUEST });
+
     try {
       const request = await db
         .collection(collection)
@@ -13,10 +16,10 @@ export const loadSurveys =
         ...doc.data(),
       }));
 
-      dispatch({ type: 'LOAD_SURVEYS', data });
+      dispatch({ type: LOAD_SURVEYS + SUCCESS, data });
 
       return data;
-    } catch {
-      console.log('Error');
+    } catch (error) {
+      dispatch({ type: LOAD_SURVEYS + FAILURE, error });
     }
   };
