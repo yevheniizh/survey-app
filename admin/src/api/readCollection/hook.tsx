@@ -1,24 +1,19 @@
-/* eslint-disable unused-imports/no-unused-vars */
-import React from 'react';
-import { db } from '@zzzhyrov/my-perfect-package';
+import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { loadSurveys } from '../../redux/actions';
 
-export function UseReadCollection({ defaults, collection, where }: any) {
+export function UseReadCollection(data: Object) {
   const [result, setResult] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    async function fetchBookList() {
+    const request = async () => {
       try {
         setLoading(true);
-        const querySnapshot = await db
-          .collection(collection)
-          .where(where.field, where.operator, where.value)
-          .get();
-        const result: Array<any> = querySnapshot.docs.map((doc: any) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        let result = await dispatch(loadSurveys(data));
+
         // @ts-ignore
         setResult(result);
         setLoading(false);
@@ -26,9 +21,9 @@ export function UseReadCollection({ defaults, collection, where }: any) {
         setLoading(false);
         setError(error);
       }
-    }
+    };
 
-    fetchBookList();
+    request();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

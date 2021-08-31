@@ -2,7 +2,12 @@ import React from 'react';
 import { UseReadCollection } from './hook';
 import { ReadCollectionType } from '../index';
 import { db } from '@zzzhyrov/my-perfect-package';
-import { Box, Button } from '@material-ui/core';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+
+/** material-ui */
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 const NoResults = ({ collection, defaults, Redirect }: any) => {
   const [loading, setLoading] = React.useState(false);
@@ -52,13 +57,6 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
     </Box>
   );
 };
-const Loading = () => <h1>Loading...</h1>;
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const Error = (error: any) => {
-  console.log(error);
-  return <h1>something went wrong</h1>;
-};
 
 export const ReadCollection = ({ data }: { data: ReadCollectionType }) => {
   const { CollectionView, collection, defaults, history, Redirect } = data;
@@ -66,11 +64,11 @@ export const ReadCollection = ({ data }: { data: ReadCollectionType }) => {
   console.log(result, error, loading);
 
   if (error) {
-    return <Error />;
+    return <Error errorText="Something went wrong" />;
   }
 
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
 
   if (result) {
