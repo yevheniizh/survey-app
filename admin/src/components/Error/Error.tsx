@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Error = ({ errorText }: { errorText: 'string' }) => {
+const Error = ({ errorText }: { errorText: string }) => {
   const classes = useStyles();
 
   return (
