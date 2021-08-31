@@ -16,7 +16,7 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
   if (id) {
     /* eslint-disable */
     return <Redirect to={`/${collection}/${id}`} />;
-    // history.push(`/${collection}/${id}`);
+    // history.push(/${collection}/${id});
     /* eslint-enable */
   }
   const onClick = async () => {
@@ -60,14 +60,13 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
 
 export const ReadCollection = ({ data }: { data: ReadCollectionType }) => {
   const { CollectionView, collection, defaults, history, Redirect } = data;
-  const { result, error, loading } = UseReadCollection({ ...data });
-  console.log(result, error, loading);
+  const { result, loaded, loading, error } = UseReadCollection({ ...data });
 
   if (error) {
     return <Error errorText="Something went wrong" />;
   }
 
-  if (loading) {
+  if (loading || !loaded) {
     return <Loader />;
   }
 
