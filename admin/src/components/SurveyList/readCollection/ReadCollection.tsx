@@ -1,13 +1,25 @@
 import React from 'react';
-import { UseReadCollection } from './hook';
-import { ReadCollectionType } from '../index';
+import { UseReadCollection } from './UseReadCollection';
 import { db } from '@zzzhyrov/my-perfect-package';
-import Loader from '../../components/Loader';
-import Error from '../../components/Error';
+import Loader from '../../Loader';
+import Error from '../../Error';
 
 /** material-ui */
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+
+export interface ReadCollectionType {
+  collection: string;
+  where: {
+    field: string;
+    operator: string;
+    value: string;
+  };
+  CollectionView: any;
+  defaults?: any;
+  history?: any;
+  Redirect?: any;
+}
 
 const NoResults = ({ collection, defaults, Redirect }: any) => {
   const [loading, setLoading] = React.useState(false);
@@ -32,6 +44,7 @@ const NoResults = ({ collection, defaults, Redirect }: any) => {
       console.log(error);
     }
   };
+
   return (
     <Box
       style={{

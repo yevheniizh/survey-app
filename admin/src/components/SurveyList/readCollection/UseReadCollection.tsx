@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadSurveys } from '../../redux/actions';
+import { loadSurveys } from '../../../redux/actions';
 
 export function UseReadCollection(data: Object) {
   const dispatch = useDispatch();
