@@ -1,4 +1,10 @@
-import { LOAD_SURVEYS, REQUEST, SUCCESS, FAILURE } from './constants';
+import {
+  LOAD_SURVEYS,
+  CREATE_SURVEY,
+  REQUEST,
+  SUCCESS,
+  FAILURE,
+} from './constants';
 import { db } from '@zzzhyrov/my-perfect-package';
 
 export const loadSurveys =
@@ -23,3 +29,25 @@ export const loadSurveys =
       dispatch({ type: LOAD_SURVEYS + FAILURE, error });
     }
   };
+
+export const createSurvey =
+  ({ collection, defaults }: any) =>
+  async (dispatch: any) => {
+    dispatch({ type: CREATE_SURVEY + REQUEST });
+
+    try {
+      const request = await db.collection(collection).add(defaults);
+      const data = { id: request.id, ...defaults };
+
+      dispatch({ type: CREATE_SURVEY + SUCCESS, data });
+
+      return data.id;
+    } catch (error) {
+      dispatch({ type: CREATE_SURVEY + FAILURE, error });
+    }
+  };
+
+export const test = (data: string) => () => {
+  console.log('TEST ACTION');
+  return data;
+};
