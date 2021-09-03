@@ -1,41 +1,40 @@
 import {
-  LOAD_SURVEYS,
+  LOGIN,
+  GOOGLE_LOGIN,
+  SIGNUP,
   SIGNOUT,
-  CREATE_SURVEY,
   REQUEST,
   SUCCESS,
   FAILURE,
 } from '../constants';
-// import { arrToMap } from '../utils';
 
 const initialState = {
-  entities: [],
+  entities: {},
   loading: false,
   loaded: false,
   error: null,
 };
 
 export default (state = initialState, action: any) => {
-  const { type, data, error } = action;
+  const { data, type, error } = action;
 
   switch (type) {
-    case LOAD_SURVEYS + REQUEST:
+    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + REQUEST:
       return {
         ...state,
         loading: true,
         loaded: false,
         error: null,
       };
-    case LOAD_SURVEYS + SUCCESS:
+    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + SUCCESS:
       return {
         ...state,
-        // entities: arrToMap(data),
         entities: data,
         loading: false,
-        loaded: true,
+        loaded: false,
         error: null,
       };
-    case LOAD_SURVEYS + FAILURE:
+    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + FAILURE:
       return {
         ...state,
         loading: false,
@@ -43,19 +42,28 @@ export default (state = initialState, action: any) => {
         error,
       };
 
-    case CREATE_SURVEY + REQUEST:
-      return state;
-    case CREATE_SURVEY + SUCCESS:
+    case SIGNOUT + REQUEST:
       return {
         ...state,
-        // entities: arrToMap(data),
-        entities: [...state.entities, { ...data }],
+        loading: true,
+        loaded: false,
+        error: null,
       };
-    case CREATE_SURVEY + FAILURE:
-      return { ...state, error };
-
     case SIGNOUT + SUCCESS:
-      return { ...state, entities: [] };
+      return {
+        ...state,
+        entities: {},
+        loading: false,
+        loaded: false,
+        error: null,
+      };
+    case SIGNOUT + FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error,
+      };
     default:
       return state;
   }

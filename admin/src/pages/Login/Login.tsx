@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { logIn, googleLogIn, signUp } from '../../redux/actions/auth.actions';
 import { LOGIN_ROUTE, SIGN_UP_ROUTE } from '../../utils/consts';
 import styles from './Login.module.css';
-
-/** Auth */
-import {
-  googleLogin,
-  formLogin,
-  formSignUp,
-} from '@zzzhyrov/my-perfect-package';
 
 /** Material UI */
 import { Box, Grid, Button, Typography, TextField } from '@material-ui/core';
@@ -40,10 +35,11 @@ const Login = ({ match }: { match: any }) => {
       setPasswordError({ isError: false, message: '' });
     }
   };
-
+  const dispatch = useDispatch();
   const onSubmit = isSignupPage
-    ? (event: any) => formSignUp(event, errorActions)
-    : (event: any) => formLogin(event, errorActions);
+    ? (event: any) => dispatch(signUp({ event, errorActions }))
+    : (event: any) => dispatch(logIn({ event, errorActions }));
+  const onClick = () => dispatch(googleLogIn());
 
   return (
     <Box className={styles.login__root} pt={8}>
@@ -103,7 +99,7 @@ const Login = ({ match }: { match: any }) => {
                 <Button
                   color="primary"
                   variant="outlined"
-                  onClick={googleLogin}
+                  onClick={onClick}
                   type="submit"
                   fullWidth
                 >

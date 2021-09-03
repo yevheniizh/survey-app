@@ -1,5 +1,15 @@
-import { db } from '@zzzhyrov/my-perfect-package';
 import {
+  db,
+  fireAuth,
+  googleLogin,
+  formLogin,
+  formSignUp,
+} from '@zzzhyrov/my-perfect-package';
+import {
+  LOGIN,
+  SIGNUP,
+  GOOGLE_LOGIN,
+  SIGNOUT,
   LOAD_SURVEYS,
   CREATE_SURVEY,
   REQUEST,
@@ -7,6 +17,7 @@ import {
   FAILURE,
 } from '../constants';
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 export default (store: any) =>
   (next: any) =>
   async (action: { type: string; isCallAPI: string; props: any }) => {
@@ -22,9 +33,17 @@ export default (store: any) =>
           ? loadSurveys
           : type === CREATE_SURVEY
           ? createSurvey
-          : loadSurveys;
+          : type === SIGNOUT
+          ? signOut
+          : type === LOGIN
+          ? logIn
+          : type === GOOGLE_LOGIN
+          ? googleLogin
+          : type === SIGNUP
+          ? signUp
+          : false;
 
-      const data = await res(props);
+      const data = (res && (await res(props))) || {};
 
       next({ ...rest, type: type + SUCCESS, data });
 
@@ -33,6 +52,18 @@ export default (store: any) =>
       throw next({ ...rest, type: type + FAILURE, error });
     }
   };
+
+async function logIn({ event, errorActions }: any) {
+  return formLogin(event, errorActions);
+}
+
+async function signUp({ event, errorActions }: any) {
+  return formSignUp(event, errorActions);
+}
+
+async function signOut() {
+  await fireAuth.signOut();
+}
 
 async function loadSurveys({ collection, where }: any) {
   const res = await db

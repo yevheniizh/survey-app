@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { fireAuth } from '@zzzhyrov/my-perfect-package';
 import { AuthContext } from '../../contexts/AuthContext';
 import clsx from 'clsx';
 
@@ -13,6 +12,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../redux/actions/auth.actions';
 
 const drawerWidth = 240;
 
@@ -49,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ drawerOpened, handleDrawer }: any) => {
   const { currentUser } = React.useContext(AuthContext);
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const onClick = () => dispatch(signOut());
 
   return (
     <AppBar
@@ -87,7 +90,7 @@ const Header = ({ drawerOpened, handleDrawer }: any) => {
           color="inherit"
           size="small"
           variant="outlined"
-          onClick={() => fireAuth.signOut()}
+          onClick={onClick}
         >
           Sign out
         </Button>
