@@ -6,7 +6,6 @@ import {
   SUCCESS,
   FAILURE,
 } from '../constants';
-// import { arrToMap } from '../utils';
 
 const initialState = {
   entities: [],
@@ -29,11 +28,9 @@ export default (state = initialState, action: any) => {
     case LOAD_SURVEYS + SUCCESS:
       return {
         ...state,
-        // entities: arrToMap(data),
         entities: data,
         loading: false,
         loaded: true,
-        error: null,
       };
     case LOAD_SURVEYS + FAILURE:
       return {
@@ -42,18 +39,23 @@ export default (state = initialState, action: any) => {
         loaded: false,
         error,
       };
-
     case CREATE_SURVEY + REQUEST:
-      return state;
+      return {
+        ...state,
+        error: null,
+      };
     case CREATE_SURVEY + SUCCESS:
       return {
         ...state,
-        // entities: arrToMap(data),
         entities: [...state.entities, { ...data }],
       };
     case CREATE_SURVEY + FAILURE:
-      return { ...state, error };
-
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error,
+      };
     case SIGNOUT + SUCCESS:
       return { ...state, entities: [] };
     default:

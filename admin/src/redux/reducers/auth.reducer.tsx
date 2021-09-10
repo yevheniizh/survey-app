@@ -1,4 +1,5 @@
 import {
+  GET_PROFILE,
   LOGIN,
   GOOGLE_LOGIN,
   SIGNUP,
@@ -19,29 +20,14 @@ export default (state = initialState, action: any) => {
   const { data, type, error } = action;
 
   switch (type) {
-    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + REQUEST:
-      return {
-        ...state,
-        loading: true,
-        loaded: false,
-        error: null,
-      };
-    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + SUCCESS:
+    case GET_PROFILE:
       return {
         ...state,
         entities: data,
-        loading: false,
-        loaded: false,
-        error: null,
       };
-    case (LOGIN || SIGNUP || GOOGLE_LOGIN) + FAILURE:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-        error,
-      };
-
+    case GOOGLE_LOGIN + REQUEST:
+    case LOGIN + REQUEST:
+    case SIGNUP + REQUEST:
     case SIGNOUT + REQUEST:
       return {
         ...state,
@@ -49,14 +35,18 @@ export default (state = initialState, action: any) => {
         loaded: false,
         error: null,
       };
+    case GOOGLE_LOGIN + SUCCESS:
+    case LOGIN + SUCCESS:
+    case SIGNUP + SUCCESS:
     case SIGNOUT + SUCCESS:
       return {
         ...state,
-        entities: {},
         loading: false,
-        loaded: false,
-        error: null,
+        loaded: true,
       };
+    case GOOGLE_LOGIN + FAILURE:
+    case LOGIN + FAILURE:
+    case SIGNUP + FAILURE:
     case SIGNOUT + FAILURE:
       return {
         ...state,
